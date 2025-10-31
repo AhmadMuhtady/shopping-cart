@@ -1,11 +1,14 @@
-import Header from './components/Header';
+import { Header } from './components/Header';
+
+import Spinner from './components/Spinner';
+
 import { useProducts } from './hooks/useProducts';
 const App = () => {
 	const { products, categories, loading, error } = useProducts();
 	if (loading)
 		return (
 			<div className="flex justify-center items-center h-screen">
-				Loading...
+				<Spinner />
 			</div>
 		);
 	if (error) return <div className="text-red-500">Error: {error}</div>;
