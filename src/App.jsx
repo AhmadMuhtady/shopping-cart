@@ -1,4 +1,5 @@
 import { Header } from './components/Header';
+import ProductList from './components/ProductList';
 
 import Spinner from './components/Spinner';
 
@@ -13,7 +14,12 @@ const App = () => {
 		);
 	if (error) return <div className="text-red-500">Error: {error}</div>;
 
-	return <Header />;
+	return (
+		<div>
+			<Header />
+			<ProductList products={products} />
+		</div>
+	);
 };
 
 export default App;

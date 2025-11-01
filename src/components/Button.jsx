@@ -5,14 +5,17 @@ const Button = ({
 	spanClassName,
 	children,
 	onClick,
+	badge,
+	logoClassName,
 }) => {
 	return (
 		<button
 			onClick={onClick}
-			className={`flex items-center gap-2 ${btnClassName}`}
+			className={`${btnClassName} ${badge ? 'relative' : ''}`}
 		>
-			{Icon && <Icon size={size} />}
-			<span className={spanClassName}>{children}</span>
+			{Icon && <Icon className={logoClassName} size={size} />}
+			{children && <span>{children}</span>}
+			{badge !== undefined && <span className={spanClassName}>{badge}</span>}
 		</button>
 	);
 };
