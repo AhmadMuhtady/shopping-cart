@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Header } from './components/Header';
 import ProductList from './components/ProductList';
 
@@ -6,6 +7,12 @@ import Spinner from './components/Spinner';
 import { useProducts } from './hooks/useProducts';
 const App = () => {
 	const { products, categories, loading, error } = useProducts();
+	const [searchInput, setSearchInput] = useState('');
+
+	const filteredProduct = products.filter((product) =>
+		product.title.toLowerCase().includes(searchInput.toLowerCase())
+	);
+
 	if (loading)
 		return (
 			<div className="flex justify-center items-center h-screen">
@@ -16,8 +23,8 @@ const App = () => {
 
 	return (
 		<div>
-			<Header />
-			<ProductList products={products} />
+			<Header setSearchInput={setSearchInput} searchInput={searchInput} />
+			<ProductList products={filteredProduct} />
 		</div>
 	);
 };

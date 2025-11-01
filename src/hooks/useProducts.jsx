@@ -20,9 +20,6 @@ export const useProducts = () => {
 				const promiseData = await productsRes.json();
 				const categoriesData = await categoriesRes.json();
 
-				console.log(promiseData);
-				console.log(categoriesData);
-
 				setProducts(promiseData);
 				setCategories(categoriesData);
 			} catch (err) {
