@@ -19,9 +19,9 @@ export const useProducts = () => {
 					throw new Error('Failed to fetch Data!');
 				const promiseData = await productsRes.json();
 				const categoriesData = await categoriesRes.json();
-
+				console.log(categoriesData);
 				setProducts(promiseData);
-				setCategories(categoriesData);
+				setCategories(['All Categories', ...categoriesData]);
 			} catch (err) {
 				setError(err.message);
 				setLoading(false);
