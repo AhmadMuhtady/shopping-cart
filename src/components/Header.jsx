@@ -1,8 +1,7 @@
 import { ShoppingCart, ShoppingBag } from 'lucide-react';
 import Button from './Button';
-import SearchBar from './SearchBar';
 
-export const Header = ({ setSearchInput, searchInput }) => {
+export const Header = ({}) => {
 	return (
 		<header className="sticky top-0 z-50 bg-white border-b-2 border-gray-200 shadow-sm">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,11 +13,6 @@ export const Header = ({ setSearchInput, searchInput }) => {
 						/>
 						<h1 className="text-2xl font-bold text-gray-900">ShopVerse</h1>
 					</div>
-
-					<SearchBar
-						setSearchInput={setSearchInput}
-						searchInput={searchInput}
-					/>
 
 					<Button
 						Icon={ShoppingBag}
