@@ -2,7 +2,7 @@ import { SearchIcon } from 'lucide-react';
 
 const SearchBar = ({ setSearchInput, searchInput }) => {
 	return (
-		<div className="relative max-w-2xl mx-auto">
+		<div className="relative">
 			<input
 				value={searchInput}
 				onChange={(e) => setSearchInput(e.target.value)}

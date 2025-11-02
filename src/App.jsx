@@ -12,15 +12,39 @@ const App = () => {
 	const [categoriesFilter, setCategoriesFilter] = useState('All Categories');
 	const [sortBy, setSortBy] = useState('default');
 
-	const filteredProduct = products
-		.filter((product) =>
-			product.title.toLowerCase().includes(searchInput.toLowerCase())
-		)
-		.filter((product) =>
-			categoriesFilter && categoriesFilter !== 'All Categories'
-				? product.category === categoriesFilter
-				: true
-		);
+	const sortingProduct = (products, sortBy) => {
+		const sorted = [...products];
+		switch (sortBy) {
+			case 'price-asc':
+				sorted.sort((a, b) => a.price - b.price);
+				break;
+			case 'price-desc':
+				sorted.sort((a, b) => b.price - a.price);
+				break;
+			case 'name-asc':
+				sorted.sort((a, b) => a.title.localeCompare(b.title));
+				break;
+			case 'rating-desc':
+				sorted.sort((a, b) => b.rating.rate - a.rating.rate);
+			case 'default':
+			default:
+				return sorted;
+		}
+		return sorted;
+	};
+
+	const filteredProduct = sortingProduct(
+		products
+			.filter((product) =>
+				product.title.toLowerCase().includes(searchInput.toLowerCase())
+			)
+			.filter((product) =>
+				categoriesFilter && categoriesFilter !== 'All Categories'
+					? product.category === categoriesFilter
+					: true
+			),
+		sortBy
+	);
 
 	if (loading)
 		return (
@@ -39,6 +63,7 @@ const App = () => {
 					setCategoriesFilter={setCategoriesFilter}
 					setSearchInput={setSearchInput}
 					searchInput={searchInput}
+					setSortBy={setSortBy}
 				/>
 				<ProductList products={filteredProduct} />
 			</main>
