@@ -2,7 +2,7 @@ const CategoryFilter = ({ setCategoriesFilter, categories }) => {
 	return (
 		<div>
 			<select
-				className="p-1 bg-black/5 backdrop-blur-sm border border-black/30 rounded-lg text-black focus:outline-none focus:border-black/60 focus:ring-2 focus:ring-black/20 transition-all text-black"
+				className="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm cursor-pointer"
 				name="category"
 				id="category"
 				onChange={(e) => setCategoriesFilter(e.target.value)}

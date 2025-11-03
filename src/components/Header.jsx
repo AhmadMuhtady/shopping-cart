@@ -1,7 +1,12 @@
 import { ShoppingCart, ShoppingBag } from 'lucide-react';
+
 import Button from './Button';
 
+import { useCart } from '../context/CartContext';
+import Cart from './Cart';
+
 export const Header = ({}) => {
+	const { totalItems, toggleCart, isCartOpen } = useCart();
 	return (
 		<header className="sticky top-0 z-50 bg-white border-b-2 border-gray-200 shadow-sm">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,14 +20,17 @@ export const Header = ({}) => {
 					</div>
 
 					<Button
+						onClick={toggleCart}
 						Icon={ShoppingBag}
 						btnClassName="relative p-2 hover:bg-gray-100 rounded-lg transition"
 						size={24}
-						badge={0}
+						badge={totalItems}
 						spanClassName="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
 					/>
 				</div>
 			</div>
+
+			{isCartOpen && <Cart />}
 		</header>
 	);
 };

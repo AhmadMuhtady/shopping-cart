@@ -1,7 +1,10 @@
 import { ShoppingCartIcon, Star } from 'lucide-react';
+
 import Button from './Button';
 
+import { useCart } from '../context/CartContext';
 const ProductCard = ({ product }) => {
+	const { addToCart } = useCart();
 	return (
 		<div className="bg-white rounded-lg shadow p-4 flex flex-col h-full hover:shadow-xl hover:scale-105 transition-transform duration-200">
 			<div className="aspect-square overflow-hidden rounded-lg mb-3">
@@ -33,6 +36,7 @@ const ProductCard = ({ product }) => {
 				</div>
 
 				<Button
+					onClick={() => addToCart(product)}
 					Icon={ShoppingCartIcon}
 					size={16}
 					btnClassName="bg-blue-600 font-bold text-white w-full px-4 py-2 rounded transition hover:bg-blue-700 flex items-center justify-center gap-2 active:scale-[0.95] transition-transform"

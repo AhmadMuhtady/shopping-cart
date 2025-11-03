@@ -26,6 +26,7 @@ const App = () => {
 				break;
 			case 'rating-desc':
 				sorted.sort((a, b) => b.rating.rate - a.rating.rate);
+				break;
 			case 'default':
 			default:
 				return sorted;
