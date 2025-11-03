@@ -14,10 +14,9 @@ export const CartProvider = ({ children }) => {
 	useEffect(() => {
 		localStorage.setItem('Cart', JSON.stringify(cart));
 	}, [cart]);
-
-	const totalItems = cart.reduce((sum, item) => Number(sum + item.cartQty), 0);
+	const totalItems = cart.reduce((sum, item) => sum + item.cartQty, 0);
 	const totalPrice = cart.reduce(
-		(sum, item) => Number(sum + item.price * item.cartQty),
+		(sum, item) => sum + item.price * item.cartQty,
 		0
 	);
 

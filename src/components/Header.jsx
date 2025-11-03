@@ -3,10 +3,9 @@ import { ShoppingCart, ShoppingBag } from 'lucide-react';
 import Button from './Button';
 
 import { useCart } from '../context/CartContext';
-import Cart from './Cart';
 
 export const Header = ({}) => {
-	const { totalItems, toggleCart, isCartOpen } = useCart();
+	const { totalItems, toggleCart } = useCart();
 	return (
 		<header className="sticky top-0 z-50 bg-white border-b-2 border-gray-200 shadow-sm">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,8 +28,6 @@ export const Header = ({}) => {
 					/>
 				</div>
 			</div>
-
-			{isCartOpen && <Cart />}
 		</header>
 	);
 };

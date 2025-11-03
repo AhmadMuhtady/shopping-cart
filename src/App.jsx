@@ -3,6 +3,8 @@ import { Header } from './components/Header';
 import ProductList from './components/ProductList';
 import ToolManagerBar from './components/ToolManagerBar';
 import Spinner from './components/Spinner';
+import Cart from './components/Cart';
+import { useCart } from './context/CartContext';
 
 import { useProducts } from './hooks/useProducts';
 
@@ -11,6 +13,8 @@ const App = () => {
 	const [searchInput, setSearchInput] = useState('');
 	const [categoriesFilter, setCategoriesFilter] = useState('All Categories');
 	const [sortBy, setSortBy] = useState('default');
+
+	const { isCartOpen } = useCart();
 
 	const sortingProduct = (products, sortBy) => {
 		const sorted = [...products];
@@ -58,6 +62,7 @@ const App = () => {
 	return (
 		<div className="min-h-screen bg-gray-50">
 			<Header />
+			{isCartOpen && <Cart />}
 			<main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 				<ToolManagerBar
 					categories={categories}
