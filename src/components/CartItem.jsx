@@ -21,10 +21,14 @@ const CartItem = ({ item }) => {
 						onClick={() => removingFromCart(item.id)}
 						Icon={X}
 						size={16}
-						btnClassName="text-gray-600 hover:text-white hover:bg-red-500 rounded-full transition-all "
+						btnClassName="text-gray-600 hover:text-red-600  transition-all "
 					/>
 				</div>
-				<p className="text-sm text-gray-500">Price: ${item.price.toFixed(2)}</p>
+				<div>
+					<p className="text-sm text-gray-500">
+						Price: ${item.price.toFixed(2)}
+					</p>
+				</div>
 				<div className="flex items-center gap-2 mt-2">
 					<Button
 						onClick={() => updateQuantity(item.id, item.cartQty - 1)}

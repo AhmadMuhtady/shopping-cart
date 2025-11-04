@@ -13,7 +13,7 @@ const Cart = () => {
 				className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
 			/>
 
-			<div className="fixed top-0 right-0 h-full w-max bg-white z-50 flex flex-col">
+			<div className="fixed top-0 right-0 h-full w-full sm:w-96 bg-white z-50 flex flex-col">
 				<div className="p-5 border-b flex justify-between items-center">
 					<h2 className="text-xl font-bold">Shopping Cart</h2>
 					<Button
