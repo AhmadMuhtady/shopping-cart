@@ -5,7 +5,6 @@ import Button from './Button';
 import { useCart } from '../context/CartContext';
 const ProductCard = ({ product, toggleFavorite, isFavorite }) => {
 	const { addToCart } = useCart();
-	const isLiked = isFavorite(product.id);
 	return (
 		<div className="relative bg-white rounded-lg shadow p-4 flex flex-col h-full hover:shadow-xl hover:scale-105 transition-transform duration-200">
 			<div className="aspect-square overflow-hidden rounded-lg mb-3">
@@ -15,7 +14,9 @@ const ProductCard = ({ product, toggleFavorite, isFavorite }) => {
 					Icon={Heart}
 					size={30}
 					logoClassName={
-						isLiked ? 'fill-red-500 text-red-500' : 'text-gray-400'
+						isFavorite(product.id)
+							? 'fill-red-500 text-red-500'
+							: 'text-gray-400'
 					}
 				/>
 
