@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import ProductList from './components/ProductList';
 import ToolManagerBar from './components/ToolManagerBar';
@@ -15,6 +15,32 @@ const App = () => {
 	const [sortBy, setSortBy] = useState('default');
 
 	const { isCartOpen } = useCart();
+
+	const [favorite, setFavorite] = useState(() => {
+		const stored = localStorage.getItem('favorites');
+		return stored ? JSON.parse(stored) : [];
+	});
+
+	// Save to localStorage when favorites change
+	useEffect(() => {
+		localStorage.setItem('favorites', JSON.stringify(favorite));
+	}, [favorite]);
+
+	const isFavorite = (productId) => {
+		return favorite.some((item) => item.id === productId);
+	};
+
+	const toggleFavorite = (product) => {
+		setFavorite((prev) => {
+			const existing = prev.find((item) => item.id === product.id);
+
+			if (existing) {
+				return prev.filter((item) => item.id !== product.id);
+			}
+
+			return [...prev, product];
+		});
+	};
 
 	const sortingProduct = (products, sortBy) => {
 		const sorted = [...products];
@@ -71,7 +97,11 @@ const App = () => {
 					searchInput={searchInput}
 					setSortBy={setSortBy}
 				/>
-				<ProductList products={filteredProduct} />
+				<ProductList
+					products={filteredProduct}
+					toggleFavorite={toggleFavorite}
+					isFavorite={isFavorite}
+				/>
 			</main>
 		</div>
 	);
