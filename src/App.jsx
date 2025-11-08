@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 
 import { useCart } from './context/CartContext';
 import { useProducts } from './hooks/useProducts';
+
 import { Header } from './components/Header';
 import Spinner from './components/Spinner';
 import Cart from './components/Cart';
-import HomePage from './pages/HomePage';
+
 import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 
 const App = () => {
 	const { products, categories, loading, error } = useProducts();
@@ -54,6 +57,7 @@ const App = () => {
 						/>
 					}
 				/>
+				<Route path="/about" element={<AboutPage />} />
 			</Routes>
 		</div>
 	);
