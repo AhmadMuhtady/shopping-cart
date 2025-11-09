@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const useProducts = () => {
 	const [products, setProducts] = useState([]);
@@ -11,8 +12,8 @@ export const useProducts = () => {
 			setError(null);
 			try {
 				const [productsRes, categoriesRes] = await Promise.all([
-					fetch('https://fakestoreapi.com/products'),
-					fetch('https://fakestoreapi.com/products/categories'),
+					fetch(API_URL),
+					fetch(`${API_URL}/categories`),
 				]);
 
 				if (!productsRes.ok || !categoriesRes.ok)
@@ -21,6 +22,7 @@ export const useProducts = () => {
 				const categoriesData = await categoriesRes.json();
 
 				setProducts(promiseData);
+				console.dir(promiseData);
 				setCategories(['All Categories', ...categoriesData]);
 			} catch (err) {
 				setError(err.message);

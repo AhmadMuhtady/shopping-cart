@@ -10,6 +10,8 @@ import Cart from './components/Cart';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import PageNotFound from './pages/PageNotFound';
 
 const App = () => {
 	const { products, categories, loading, error } = useProducts();
@@ -21,6 +23,22 @@ const App = () => {
 		const stored = localStorage.getItem('favorites');
 		return stored ? JSON.parse(stored) : [];
 	});
+
+	const isFavorite = (productId) => {
+		return favorite.find((item) => item.id === productId);
+	};
+
+	const toggleFavorite = (product) => {
+		setFavorite((prev) => {
+			const existing = prev.find((item) => item.id === product.id);
+
+			if (existing) {
+				return prev.filter((item) => item.id !== product.id);
+			}
+
+			return [...prev, product];
+		});
+	};
 
 	useEffect(() => {
 		localStorage.setItem('favorites', JSON.stringify(favorite));
@@ -54,10 +72,22 @@ const App = () => {
 							setSortBy={setSortBy}
 							favorite={favorite}
 							setFavorite={setFavorite}
+							isFavorite={isFavorite}
+							toggleFavorite={toggleFavorite}
 						/>
 					}
 				/>
 				<Route path="/about" element={<AboutPage />} />
+				<Route
+					path="/product/:id"
+					element={
+						<ProductDetailPage
+							isFavorite={isFavorite}
+							toggleFavorite={toggleFavorite}
+						/>
+					}
+				/>
+				<Route path="*" element={<PageNotFound />} />
 			</Routes>
 		</div>
 	);

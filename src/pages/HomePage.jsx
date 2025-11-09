@@ -12,23 +12,9 @@ const HomePage = ({
 	setSortBy,
 	favorite,
 	setFavorite,
+	isFavorite,
+	toggleFavorite,
 }) => {
-	const isFavorite = (productId) => {
-		return favorite.find((item) => item.id === productId);
-	};
-
-	const toggleFavorite = (product) => {
-		setFavorite((prev) => {
-			const existing = prev.find((item) => item.id === product.id);
-
-			if (existing) {
-				return prev.filter((item) => item.id !== product.id);
-			}
-
-			return [...prev, product];
-		});
-	};
-
 	const sortingProduct = (products, sortBy) => {
 		const sorted = [...products];
 		switch (sortBy) {
